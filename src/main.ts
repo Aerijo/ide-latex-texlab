@@ -10,7 +10,7 @@ class LatexLanguageClient extends AutoLanguageClient {
   startServerProcess (_projectPath: string) {
     console.log("starting texlab server...")
 
-    const serverPath = atom.config.get("ide-latex.serverPath")
+    const serverPath = atom.config.get("ide-latex-texlab.serverPath")
     const { ELECTRON_RUN_AS_NODE, ...env } = process.env
 
     const spawned = child_process.spawn("java", ["-jar", serverPath], env) as LanguageServerProcess
@@ -21,7 +21,7 @@ class LatexLanguageClient extends AutoLanguageClient {
     console.log("spawned", spawned)
 
     spawned.once("close", (code, signal) => {
-      console.log(`latex lang server closed with code ${code} and signal ${signal}`)
+      console.log(`texlab lang server closed with code ${code} and signal ${signal}`)
     })
 
     return spawned

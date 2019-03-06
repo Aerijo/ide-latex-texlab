@@ -1,5 +1,5 @@
 {
-  "name": "ide-latex",
+  "name": "ide-latex-texlab",
   "main": "./dist/main",
   "version": "0.2.1",
   "description": "Atom IDE package for the Texlab LaTeX language server",

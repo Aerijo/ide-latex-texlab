@@ -9,14 +9,14 @@ class LatexLanguageClient extends atom_languageclient_1.AutoLanguageClient {
     getServerName() { return "latex-language-server"; }
     startServerProcess(_projectPath) {
         console.log("starting texlab server...");
-        const serverPath = atom.config.get("ide-latex.serverPath");
+        const serverPath = atom.config.get("ide-latex-texlab.serverPath");
         const _a = process.env, { ELECTRON_RUN_AS_NODE } = _a, env = tslib_1.__rest(_a, ["ELECTRON_RUN_AS_NODE"]);
         const spawned = child_process.spawn("java", ["-jar", serverPath], env);
         spawned.stdout.setEncoding("utf8");
         spawned.stderr.setEncoding("utf8");
         console.log("spawned", spawned);
         spawned.once("close", (code, signal) => {
-            console.log(`latex lang server closed with code ${code} and signal ${signal}`);
+            console.log(`texlab lang server closed with code ${code} and signal ${signal}`);
         });
         return spawned;
     }
