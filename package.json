@@ -8,6 +8,9 @@
     "texlab",
     "ide"
   ],
+  "files": [
+    "/dist"
+  ],
   "repository": "https://github.com/Aerijo/ide-latex-texlab",
   "license": "MIT",
   "engines": {
