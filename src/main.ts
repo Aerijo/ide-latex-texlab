@@ -1,31 +1,38 @@
-import * as child_process from "child_process"
+import * as child_process from "child_process";
+import * as fs from "fs";
 
-import { AutoLanguageClient, LanguageServerProcess } from "atom-languageclient"
+import {AutoLanguageClient, LanguageServerProcess} from "atom-languageclient";
 
 class LatexLanguageClient extends AutoLanguageClient {
-  getGrammarScopes () { return ["text.tex.latex", "text.tex.biber", "text.tex.bibtex"] }
-  getLanguageName () { return "LaTeX" }
-  getServerName () { return "latex-language-server" }
+  getGrammarScopes() {
+    return ["text.tex.latex", "text.tex.biber", "text.tex.bibtex"];
+  }
+  getLanguageName() {
+    return "LaTeX";
+  }
+  getServerName() {
+    return "texlab-language-server";
+  }
 
-  startServerProcess (_projectPath: string) {
-    console.log("starting texlab server...")
+  startServerProcess() {
+    const serverPath = atom.config.get("ide-latex-texlab.serverPath");
+    if (!fs.existsSync(serverPath)) {
+      console.error(`Could not find texlab server at ${serverPath}`);
+    }
 
-    const serverPath = atom.config.get("ide-latex-texlab.serverPath")
-    const { ELECTRON_RUN_AS_NODE, ...env } = process.env
+    const {ELECTRON_RUN_AS_NODE, ...env} = process.env;
 
-    const spawned = child_process.spawn("java", ["-jar", serverPath], env) as LanguageServerProcess
+    const spawned = child_process.spawn(serverPath, env) as LanguageServerProcess;
 
-    spawned.stdout.setEncoding("utf8")
-    spawned.stderr.setEncoding("utf8")
-
-    console.log("spawned", spawned)
+    spawned.stdout.setEncoding("utf8");
+    spawned.stderr.setEncoding("utf8");
 
     spawned.once("close", (code, signal) => {
-      console.log(`texlab lang server closed with code ${code} and signal ${signal}`)
-    })
+      console.log(`texlab lang server closed with code ${code} and signal ${signal}`);
+    });
 
-    return spawned
+    return spawned;
   }
 }
 
-module.exports = new LatexLanguageClient()
+module.exports = new LatexLanguageClient();

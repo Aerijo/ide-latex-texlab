@@ -1,20 +1,20 @@
 {
   "compilerOptions": {
-    "strict": true,
-    "declaration": true,
-    "declarationDir": "./types",
-    "forceConsistentCasingInFileNames": true,
+    "alwaysStrict": true,
+    "build": true,
+    "diagnostics": false,
     "importHelpers": true,
-    "lib": ["es2017", "dom"],
-    "module": "commonjs",
-    "noErrorTruncation": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitReturns": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "outDir": "./dist",
-    "sourceMap": true,
-    "target": "es2017"
-  },
-  "compileOnSave": true
+    "inlineSourceMap": true,
+    "inlineSources": false,
+    "listFiles": false,
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "newLine": "lf",
+    "outDir": "dist",
+    "pretty": true,
+    "removeComments": true,
+    "rootDir": "src",
+    "strict": true,
+    "target": "ES2018"
+  }
 }

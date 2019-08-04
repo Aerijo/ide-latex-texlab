@@ -5,6 +5,7 @@
   "description": "Atom IDE package for the Texlab LaTeX language server",
   "keywords": [
     "latex",
+    "texlab",
     "ide"
   ],
   "repository": "https://github.com/Aerijo/ide-latex-texlab",
@@ -17,15 +18,21 @@
   },
   "devDependencies": {
     "@types/atom": "latest",
-    "tslint": "latest",
-    "typescript": "latest"
+    "@types/node": "^12.6.1",
+    "prettier": "1.18.2",
+    "tslib": "^1.10.0",
+    "tslint": "^5.18.0",
+    "tslint-config-prettier": "1.18.0",
+    "typescript": "^3.5.3"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "fix-lint": "prettier --check --write --ignore-path .gitignore **/*"
   },
   "configSchema": {
     "serverPath": {
-      "description": "An absolute path to the the server JAR file",
+      "description": "An absolute path to the the server executable",
       "type": "string",
       "default": ""
     }
@@ -66,11 +73,6 @@
     "code-highlight": {
       "versions": {
         "0.1.0": "provideCodeHighlight"
-      }
-    },
-    "code-format.onSave": {
-      "versions": {
-        "0.1.0": "provideOnSaveCodeFormat"
       }
     }
   }
